@@ -7,11 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "message")
-
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllMessages",
+        query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+    )
+})
+@Table(name = "messages")
 public class Message {
     @Id
     @Column(name = "id")
@@ -24,11 +31,11 @@ public class Message {
     @Column(name = "content", length = 255, nullable = false)
     private String content;
 
-    @Column(name = "create_at", nullable = false)
-    private Timestamp create_at;
+    @Column(name = "created_at", nullable = false)
+    private Timestamp created_at;
 
-    @Column(name = "update_at", nullable = false)
-    private Timestamp update_at;
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updated_at;
 
     public Integer getId() {
         return id;
@@ -54,19 +61,19 @@ public class Message {
         this.content = content;
     }
 
-    public Timestamp getCreate_at() {
-        return create_at;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreate_at(Timestamp create_at) {
-        this.create_at = create_at;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public Timestamp getUpdate_at() {
-        return update_at;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdate_at(Timestamp update_at) {
-        this.update_at = update_at;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 }
